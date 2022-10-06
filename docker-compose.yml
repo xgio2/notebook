@@ -17,7 +17,7 @@ services:
             context: .
             dockerfile: _docker/app/Dockerfile
         volumes:
-            - ./:/var/wwwg
+            - ./:/var/www
         depends_on:
             - db
         container_name: project_app
