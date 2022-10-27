@@ -103,8 +103,7 @@ class NotebookController extends Controller
         return view('notebook.edit', compact('person'));
 
     }
-    public function update(Request $request) {
-        $path = $request->file('image')->edit('uploads', 'public');
+    public function update(Request $request, Person $person) {
         $data = request()->validate([
             'full_name' => 'string',
             'company' => 'string',
@@ -112,10 +111,12 @@ class NotebookController extends Controller
             'email' => 'string',
             'date_birthday' => 'string',
         ]);
-        $data['image'] = $path;
-        $person = $request;
+        if($request->file('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = $path;
+        }
         $person->update($data);
-        return redirect()->route('notebook.show', $person->id);
+        return redirect()->route('notebook.index');
     }
     public function destroy(Person $person){
         $person->delete();
