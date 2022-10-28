@@ -12,4 +12,6 @@
             @endforeach
         </div>
     </div>
+          {{ $persons->render() }}
+
 @endsection

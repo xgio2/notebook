@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use OpenApi\Attributes\Post;
 
 
 /**
@@ -76,7 +77,7 @@ use Illuminate\Routing\Controller as BaseController;
 class NotebookController extends Controller
 {
     public function index() {
-        $persons = Person::where('is_published', 1)->get();
+        $persons = Person::where('is_published', 1)->paginate(10);
         return view('notebook.index', compact('persons'));
     }
     public function create() {

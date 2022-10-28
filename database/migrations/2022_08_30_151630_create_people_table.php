@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->string('company')->nullable();
+            $table->string('company')->default("Компания не заполнена");
             $table->string('number');
             $table->string('email');
             $table->string('date_birthday')->nullable();
